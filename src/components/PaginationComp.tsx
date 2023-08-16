@@ -29,7 +29,7 @@ export default function PaginationComp() {
 
   return (
     <Pagination
-      count={total_pages}
+      count={total_pages <= 500 ? total_pages : 500}
       shape="rounded"
       sx={PaginationStyle}
       renderItem={renderItem}

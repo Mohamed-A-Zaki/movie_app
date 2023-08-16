@@ -5,12 +5,14 @@ import getMoviesResponse from "../types/getMoviesResponse.type";
 
 type InitialState = {
   moviesList: movie[];
+  movie: movie;
   page: number;
   total_pages: number;
 };
 
 const initialState: InitialState = {
   moviesList: [],
+  movie: {} as movie,
   page: 1,
   total_pages: 0,
 };
@@ -34,6 +36,19 @@ export const getMovies = createAsyncThunk(
   }
 );
 
+export const getMovieDetails = createAsyncThunk(
+  "movies/getMovieDetails",
+  async (id: number) => {
+    const url = `${baseURL}/${id}?language=ar`;
+
+    const { data } = await axios.get(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return data;
+  }
+);
+
 const moviesSlice = createSlice({
   name: "movies",
   initialState,
@@ -43,10 +58,15 @@ const moviesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getMovies.fulfilled, (state, { payload }) => {
-      state.moviesList = payload.results;
-      state.total_pages = payload.total_pages;
-    });
+    builder
+      .addCase(getMovies.fulfilled, (state, { payload }) => {
+        state.moviesList = payload.results;
+        state.total_pages = payload.total_pages;
+      })
+
+      .addCase(getMovieDetails.fulfilled, (state, { payload }) => {
+        state.movie = payload;
+      });
   },
 });
 
