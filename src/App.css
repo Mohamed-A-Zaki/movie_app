@@ -9,4 +9,11 @@ a {
   text-decoration: none;
 }
 
-/* #b45b35 */
+/* start pagination */
+
+.css-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+  color: #fff;
+  background-color: #b45b35 !important;
+}
+
+/* end pagination */

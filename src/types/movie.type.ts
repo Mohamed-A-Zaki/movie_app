@@ -1,5 +1,3 @@
-
-
 type movie = {
   adult: boolean;
   backdrop_path: string;

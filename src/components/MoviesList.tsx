@@ -9,11 +9,11 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 const MoviesList = () => {
   const dispatch = useAppDispatch();
-  const { moviesList } = useAppSelector((state) => state.movies);
+  const { moviesList, page } = useAppSelector((state) => state.movies);
 
   useEffect(() => {
-    dispatch(getMovies());
-  }, [dispatch]);
+    dispatch(getMovies(page));
+  }, [dispatch, page]);
 
   if (moviesList.length === 0) {
     return (
