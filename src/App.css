@@ -11,7 +11,7 @@ a {
 
 /* start pagination */
 
-.css-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+.pagination button[aria-current="true"] {
   color: #fff;
   background-color: #b45b35 !important;
 }

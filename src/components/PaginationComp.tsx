@@ -29,6 +29,7 @@ export default function PaginationComp() {
 
   return (
     <Pagination
+      className="pagination"
       count={total_pages <= 500 ? total_pages : 500}
       shape="rounded"
       sx={PaginationStyle}
