@@ -1,5 +1,15 @@
+import "./App.css";
+
+import Navbar from "./components/Navbar";
+import MoviesList from "./components/MoviesList";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <Navbar />
+      <MoviesList />
+    </>
+  );
 };
 
 export default App;
