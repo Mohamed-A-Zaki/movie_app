@@ -1,7 +1,19 @@
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useAppDispatch } from "../store/hooks";
+import { getMovies, search } from "../store/moviesSlice";
 
 const SearchField = () => {
+  const dispatch = useAppDispatch();
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      dispatch(search(e.target.value));
+    } else {
+      dispatch(getMovies(1));
+    }
+  };
+
   const renderAdornment = () => {
     return (
       <InputAdornment position="start">
@@ -22,6 +34,7 @@ const SearchField = () => {
         disableUnderline: true,
         endAdornment: renderAdornment(),
       }}
+      onChange={handleSearch}
     />
   );
 };
