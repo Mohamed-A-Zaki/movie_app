@@ -107,6 +107,7 @@ const moviesSlice = createSlice({
         state.error = "";
       })
       .addCase(search.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.moviesList = payload.results;
         state.total_pages = payload.total_pages;
       })

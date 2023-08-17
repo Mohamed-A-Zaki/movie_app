@@ -14,7 +14,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function PaginationComp() {
   const dispatch = useAppDispatch();
-  const { page, total_pages } = useAppSelector((state) => state.movies);
+  const {moviesList, page, total_pages } = useAppSelector((state) => state.movies);
 
   const renderItem = (item: PaginationRenderItemParams) => (
     <PaginationItem
@@ -23,7 +23,7 @@ export default function PaginationComp() {
     />
   );
 
-  if (total_pages === 0) {
+  if (moviesList.length === 0) {
     return null;
   }
 
