@@ -8,6 +8,8 @@ type InitialState = {
   movie: movie;
   page: number;
   total_pages: number;
+  loading: boolean;
+  error: string;
 };
 
 const initialState: InitialState = {
@@ -15,6 +17,8 @@ const initialState: InitialState = {
   movie: {} as movie,
   page: 1,
   total_pages: 0,
+  loading: true,
+  error: "",
 };
 
 const api_key = "831bf34938682b6a1276decd484e254f";
@@ -24,7 +28,6 @@ const token =
 
 const baseURL = "https://api.themoviedb.org/3";
 
-// get movies
 export const getMovies = createAsyncThunk(
   "movies/getMovies",
   async (page: number) => {
@@ -72,18 +75,44 @@ const moviesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getMovies.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
       .addCase(getMovies.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.moviesList = payload.results;
         state.total_pages = payload.total_pages;
       })
-
-      .addCase(getMovieDetails.fulfilled, (state, { payload }) => {
-        state.movie = payload;
+      .addCase(getMovies.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
       })
 
+      .addCase(getMovieDetails.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
+      .addCase(getMovieDetails.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.movie = payload;
+      })
+      .addCase(getMovieDetails.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+
+      .addCase(search.pending, (state) => {
+        state.loading = true;
+        state.error = "";
+      })
       .addCase(search.fulfilled, (state, { payload }) => {
         state.moviesList = payload.results;
         state.total_pages = payload.total_pages;
+      })
+      .addCase(search.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
       });
   },
 });

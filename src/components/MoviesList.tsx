@@ -1,19 +1,31 @@
 import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 
-import MovieCard from "./MovieCard";
-import MoviesListLayout from "./MoviesListLayout";
-
 import { getMovies } from "../store/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 
+import Error from "./Error";
+import Loading from "./Loading";
+import MovieCard from "./MovieCard";
+import MoviesListLayout from "./MoviesListLayout";
+
 const MoviesList = () => {
   const dispatch = useAppDispatch();
-  const { moviesList, page } = useAppSelector((state) => state.movies);
+  const { moviesList, page, error, loading } = useAppSelector(
+    (state) => state.movies
+  );
 
   useEffect(() => {
     dispatch(getMovies(page));
   }, [dispatch, page]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   if (moviesList.length === 0) {
     return (
