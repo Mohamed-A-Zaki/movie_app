@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 
-import { getMovies } from "../store/moviesSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getMovies } from "../../store/moviesSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
-import Error from "./Error";
-import Loading from "./Loading";
 import MovieCard from "./MovieCard";
+import Error from "../../Utility/Error";
+import Loading from "../../Utility/Loading";
 import MoviesListLayout from "./MoviesListLayout";
 
 const MoviesList = () => {

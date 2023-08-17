@@ -1,4 +1,4 @@
-import movie from "../types/movie.type";
+import movie from "../../types/movie.type";
 import { Box, Stack, Typography } from "@mui/material";
 
 const MovieInfo = (props: movie) => {

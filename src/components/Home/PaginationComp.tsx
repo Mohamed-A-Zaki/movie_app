@@ -6,15 +6,17 @@ import {
   SxProps,
 } from "@mui/material";
 
-import { setpage } from "../store/moviesSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { setpage } from "../../store/moviesSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function PaginationComp() {
   const dispatch = useAppDispatch();
-  const {moviesList, page, total_pages } = useAppSelector((state) => state.movies);
+  const { moviesList, page, total_pages } = useAppSelector(
+    (state) => state.movies
+  );
 
   const renderItem = (item: PaginationRenderItemParams) => (
     <PaginationItem

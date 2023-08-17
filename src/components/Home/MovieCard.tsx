@@ -1,5 +1,5 @@
+import movie from "../../types/movie.type";
 import { useNavigate } from "react-router-dom";
-import movie from "../types/movie.type";
 import { Card, CardMedia } from "@mui/material";
 
 const MovieCard = ({ poster_path, original_title, id }: movie) => {

@@ -1,7 +1,8 @@
-import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useAppDispatch } from "../store/hooks";
-import { getMovies, search } from "../store/moviesSlice";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+
+import { useAppDispatch } from "../../store/hooks";
+import { getMovies, search } from "../../store/moviesSlice";
 
 const SearchField = () => {
   const dispatch = useAppDispatch();

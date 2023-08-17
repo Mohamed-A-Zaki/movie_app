@@ -2,16 +2,16 @@ import { useEffect } from "react";
 import { Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-import { getMovieDetails } from "../store/moviesSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getMovieDetails } from "../../store/moviesSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
-import Error from "./Error";
-import Loading from "./Loading";
-import Controls from "./Controls";
-import MovieInfo from "./MovieInfo";
-import MovieStory from "./MovieStory";
+import Error from "../../Utility/Error";
+import Loading from "../../Utility/Loading";
+import Controls from "../../components/MovieDetails/Controls";
+import MovieInfo from "../../components/MovieDetails/MovieInfo";
+import MovieStory from "../../components/MovieDetails/MovieStory";
 
-const MovieDetails = () => {
+const MovieDetailsPage = () => {
   const { id } = useParams();
 
   const dispatch = useAppDispatch();
@@ -38,4 +38,4 @@ const MovieDetails = () => {
   );
 };
 
-export default MovieDetails;
+export default MovieDetailsPage;
